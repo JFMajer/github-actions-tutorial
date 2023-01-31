@@ -51,6 +51,6 @@ jobs:
       - name: list files in tar archive
         run: tar -tzf build/dist.tar.gz
       - name: extract tar archive
-        run: tar -xzf build/dist.tar.gz
+        run: tar -xzf build/dist.tar.gz -C build
       - name: list files
         run: ls -la & ls -la build
