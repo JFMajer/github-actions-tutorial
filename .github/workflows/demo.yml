@@ -47,4 +47,4 @@ jobs:
           name: build
           path: build
       - name: list files
-        run: ls -la 
+        run: ls -la build
