@@ -34,7 +34,7 @@ jobs:
         with:
           name: build
           path: dist.tar.gz
-          retentiondays: 1
+          retention-days: 1
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -48,3 +48,7 @@ jobs:
           path: build
       - name: list files
         run: ls -la
+      - name: untar dist directory
+        run: tar -xzf build/dist.tar.gz
+      - name: list files
+        run: ls -la build
