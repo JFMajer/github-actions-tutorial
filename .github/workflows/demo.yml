@@ -25,11 +25,15 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+      - name: list files
+        run: ls -la
       - name: Upload build
         uses: actions/upload-artifact@v3
         with:
           name: build
-          path: build
+          path: |
+            dist
+            package.json
           retention-days: 1
   deploy:
     needs: build
@@ -43,4 +47,4 @@ jobs:
           name: build
           path: build
       - name: list files
-        run: ls -la build
+        run: ls -la 
