@@ -48,3 +48,5 @@ jobs:
           path: build
       - name: list files
         run: ls -la build
+      - name: list files
+        run: ls -la build/dist
