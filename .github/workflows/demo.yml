@@ -48,7 +48,9 @@ jobs:
           path: build
       - name: list files
         run: ls -la
-      - name: untar dist directory
+      - name: list files in tar archive
+        run: tar -tzf build/dist.tar.gz
+      - name: extract tar archive
         run: tar -xzf build/dist.tar.gz
       - name: list files
         run: ls -la build
