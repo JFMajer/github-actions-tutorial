@@ -31,9 +31,10 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build
-          path: |
-            dist/
-            package.json
+          path: dist/
+          # path: |
+          #   dist/
+          #   package.json
           retention-days: 1
   deploy:
     needs: build
@@ -48,5 +49,5 @@ jobs:
           path: build
       - name: list files
         run: ls -la build
-      - name: list files
+      - name: list files 2
         run: ls -la build/dist
