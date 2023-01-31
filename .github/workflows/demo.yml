@@ -18,6 +18,9 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{ steps.publish.outputs.script-file }}
+      some-other-output: ${{ steps.publish2.outputs.some-other-output }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -25,6 +28,12 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+      - name: publish js filename
+        id: publish
+        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
+      - name: publish random url
+        id: publish-url
+        run: echo "some-other-output=https://example.com" >> $GITHUB_OUTPUT
       - name: tar dist directory
         run: tar -czf dist.tar.gz dist
       - name: list files
@@ -53,4 +62,8 @@ jobs:
       - name: extract tar archive
         run: tar -xzf build/dist.tar.gz -C build
       - name: list files
-        run: ls -la & ls -la build
+        run: ls -la & ls -la build & ls -la build/dist
+      - name: output filename
+        run: echo ${{ needs.build.outputs.script-file }}
+      - name: output some other output
+        run: echo ${{ needs.build.outputs.some-other-output }}
