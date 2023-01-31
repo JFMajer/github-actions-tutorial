@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       script-file: ${{ steps.publish.outputs.script-file }}
-      some-other-output: ${{ steps.publish2.outputs.some-other-output }}
+      some-other-output: ${{ steps.publish-url.outputs.some-other-output }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
