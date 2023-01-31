@@ -32,7 +32,7 @@ jobs:
         with:
           name: build
           path: |
-            dist
+            dist/
             package.json
           retention-days: 1
   deploy:
