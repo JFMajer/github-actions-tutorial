@@ -14,11 +14,13 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: cache dependencies
+        id: cache
         uses: actions/cache@v3
         with:
           path: ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}}      
       - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Lint code
         run: npm run lint
@@ -46,7 +48,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}}  
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}}
       - name: Install dependencies
         run: npm ci
       - name: Build website
@@ -97,4 +99,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: output
-        run: echo "some jobs have failed"
+        run: | 
+          echo "some jobs have failed"
+          echo: ${{ toJSON(github) }}
