@@ -27,13 +27,14 @@ jobs:
         run: npm run test
         continue-on-error: true
       - name: Upload test results
-        if: ${{ steps.run-tests.outcome == 'failure' }}
+        if: failure() && steps.run-tests.outcome == 'failure'
         uses: actions/upload-artifact@v3
         with:
           name: test-report
           path: test.json
           retention-days: 1
   build:
+  if: steps.run-tests.outcome == 'success'
     needs: test
     runs-on: ubuntu-latest
     outputs:
@@ -68,6 +69,7 @@ jobs:
           path: dist.tar.gz
           retention-days: 1
   deploy:
+  if: steps.run-tests.outcome == 'success'
     needs: build
     runs-on: ubuntu-latest
     steps:
