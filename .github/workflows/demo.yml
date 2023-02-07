@@ -5,8 +5,12 @@ on:
       - main
 jobs:
   test:
+    env:
+      TEST_VARIABLE: test123
     runs-on: ubuntu-latest
     steps:
+      - name: output test variable
+        run: echo $TEST_VARIABLE
       - name: Get code
         uses: actions/checkout@v3
       - name: cache dependencies
