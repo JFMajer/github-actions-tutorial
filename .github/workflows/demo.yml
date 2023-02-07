@@ -92,6 +92,7 @@ jobs:
       - name: output some other output
         run: echo ${{ needs.build.outputs.some-other-output }}
   report:
+    need: [deploy]
     if: ${{ failure() }}
     runs-on: ubuntu-latest
     steps:
