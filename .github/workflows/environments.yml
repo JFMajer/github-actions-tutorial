@@ -1,0 +1,23 @@
+name: Test variables using repo environments
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  dev:
+    environment: dev
+  runs-on: ubuntu-latest
+  steps:
+    - name: output username
+      run: echo ${{ env.USERNAME }}
+    - name: Get code
+      uses: actions/checkout@v3
+  prod:
+    environment: prod
+  runs-on: ubuntu-latest
+  steps:
+    - name: output username
+      run: echo ${{ env.USERNAME }}
+    - name: Get code
+      uses: actions/checkout@v3
