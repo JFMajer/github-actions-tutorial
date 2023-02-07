@@ -14,7 +14,9 @@ jobs:
       - name: output username
         run: echo "${{ vars.USERNAME }}"
       - name: output password
-        run: echo "${{ env.PASS }}"
+        run: echo "${{ env.PASS }}" >> test.txt
+      - name: cat test.txt
+        run: cat test.txt
       - name: Get code
         uses: actions/checkout@v3
   prod:
