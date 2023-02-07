@@ -91,3 +91,9 @@ jobs:
         run: echo ${{ needs.build.outputs.script-file }}
       - name: output some other output
         run: echo ${{ needs.build.outputs.some-other-output }}
+  report:
+    if: ${{ failure() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: output
+        run: echo "some jobs have failed"
