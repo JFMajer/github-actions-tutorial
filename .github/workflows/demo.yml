@@ -33,7 +33,7 @@ jobs:
           path: test.json
           retention-days: 1
   build:
-    if: !failure()
+    if: ${{ !failure() }}
     needs: test
     runs-on: ubuntu-latest
     outputs:
@@ -68,7 +68,7 @@ jobs:
           path: dist.tar.gz
           retention-days: 1
   deploy:
-    if: !failure()
+    if: ${{ !failure() }}
     needs: build
     runs-on: ubuntu-latest
     steps:
