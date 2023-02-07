@@ -6,7 +6,7 @@ on:
 jobs:
   test:
     env:
-      TEST_VARIABLE: test123
+      TEST_VARIABLE: ${{ secrets.SECRET1 }}}
     runs-on: ubuntu-latest
     steps:
       - name: output test variable
