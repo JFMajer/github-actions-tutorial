@@ -24,6 +24,12 @@ jobs:
         run: npm run lint
       - name: Test code
         run: npm run test
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-report
+          path: test.json
+          retention-days: 1
   build:
     needs: test
     runs-on: ubuntu-latest
