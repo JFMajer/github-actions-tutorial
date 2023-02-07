@@ -8,9 +8,13 @@ jobs:
   dev:
     environment: dev
     runs-on: ubuntu-latest
+    env:
+      PASS: ${{ secrets.USER_PASSWORD }}
     steps:
       - name: output username
-        run: echo "${{ env.USERNAME }}"
+        run: echo "${{ vars.USERNAME }}"
+      - name: output password
+        run: echo "${{ env.PASS }}"
       - name: Get code
         uses: actions/checkout@v3
   prod:
