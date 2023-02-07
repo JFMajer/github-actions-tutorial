@@ -25,7 +25,6 @@ jobs:
       - name: Test code
         id: run-tests
         run: npm run test
-        continue-on-error: true
       - name: Upload test results
         if: failure() && steps.run-tests.outcome == 'failure'
         uses: actions/upload-artifact@v3
@@ -34,7 +33,7 @@ jobs:
           path: test.json
           retention-days: 1
   build:
-    if: jobs.test.result == 'success'
+    if: !failure()
     needs: test
     runs-on: ubuntu-latest
     outputs:
@@ -69,7 +68,7 @@ jobs:
           path: dist.tar.gz
           retention-days: 1
   deploy:
-    if: jobs.test.result == 'success'
+    if: !failure()
     needs: build
     runs-on: ubuntu-latest
     steps:
