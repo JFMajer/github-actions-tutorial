@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: output username
-        run: echo ${{ env.USERNAME }}
+        run: echo "${{ env.USERNAME }}"
       - name: Get code
         uses: actions/checkout@v3
   prod:
@@ -18,6 +18,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: output username
-        run: echo ${{ env.USERNAME }}
+        run: echo ${{ vars.USERNAME }}
       - name: Get code
         uses: actions/checkout@v3
