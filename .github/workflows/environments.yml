@@ -7,17 +7,17 @@ on:
 jobs:
   dev:
     environment: dev
-  runs-on: ubuntu-latest
-  steps:
-    - name: output username
-      run: echo ${{ env.USERNAME }}
-    - name: Get code
-      uses: actions/checkout@v3
+    runs-on: ubuntu-latest
+    steps:
+      - name: output username
+        run: echo ${{ env.USERNAME }}
+      - name: Get code
+        uses: actions/checkout@v3
   prod:
     environment: prod
-  runs-on: ubuntu-latest
-  steps:
-    - name: output username
-      run: echo ${{ env.USERNAME }}
-    - name: Get code
-      uses: actions/checkout@v3
+    runs-on: ubuntu-latest
+    steps:
+      - name: output username
+        run: echo ${{ env.USERNAME }}
+      - name: Get code
+        uses: actions/checkout@v3
