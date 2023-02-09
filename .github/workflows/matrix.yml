@@ -10,7 +10,7 @@ jobs:
         include:
           - os: ubuntu-latest
             node-version: 18
-        exlude:
+        exclude:
           - os: windows-latest
             node-version: 12
     runs-on: ${{ matrix.os }}
