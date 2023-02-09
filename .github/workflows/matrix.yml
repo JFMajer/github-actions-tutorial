@@ -37,3 +37,6 @@ jobs:
     uses: ./.github/workflows/reusable.yml
     with:
       artifact-name: dist-18-ubuntu-latest
+    secrets:
+      secret: ${{ secrets.SECRET1 }}
+      

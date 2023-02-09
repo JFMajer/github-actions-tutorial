@@ -8,11 +8,22 @@ on:
         required: true
         type: string
         default: my-artifact
+      environment:
+        description: 'The environment to deploy to'
+        required: true
+        type: string
+        default: dev
+    secrets:
+      secret1:
+        description: 'The username to use for this job'
+        required: false
+    
 
 
 
 jobs:
   deploy:
+    environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -25,4 +36,8 @@ jobs:
         run: | 
           echo "Hello, world!"
           echo "I am reusable!"
+      - name: do i see env secret?
+        run: echo ${{ secrets.USER_PASSWORD }}
+      - name: output environment name
+        run: echo ${{ inputs.environment }}
   
