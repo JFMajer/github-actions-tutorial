@@ -38,5 +38,5 @@ jobs:
     with:
       artifact-name: dist-18-ubuntu-latest
     secrets:
-      secret: ${{ secrets.SECRET1 }}
+      secret1: ${{ secrets.SECRET1 }}
       
