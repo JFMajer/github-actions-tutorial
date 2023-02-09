@@ -39,4 +39,10 @@ jobs:
       artifact-name: dist-18-ubuntu-latest
     secrets:
       secret1: ${{ secrets.SECRET1 }}
+  deploy-output:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: output deploy output
+        run: echo ${{ needs.deploy.outputs.result }}
       

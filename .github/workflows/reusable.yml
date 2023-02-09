@@ -17,12 +17,18 @@ on:
       secret1:
         description: 'The username to use for this job'
         required: false
-    
+    outputs:
+      result:
+        description: 'The results of the job'
+        value: ${{ jobs.deploy.outputs.outcome }}}
+      
 
 
 
 jobs:
   deploy:
+    outputs:
+      outcome: ${{ steps.output.outputs.step-result }}
     environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     steps:
@@ -40,4 +46,7 @@ jobs:
         run: echo ${{ secrets.USER_PASSWORD }}
       - name: output environment name
         run: echo ${{ inputs.environment }}
+      - name: set result output
+        id: output
+        run: echo "step-result=success" >> $GITHUB_OUTPUT
   
