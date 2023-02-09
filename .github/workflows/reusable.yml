@@ -10,7 +10,7 @@ on:
         default: my-artifact
       environment:
         description: 'The environment to deploy to'
-        required: true
+        required: false
         type: string
         default: dev
     secrets:
