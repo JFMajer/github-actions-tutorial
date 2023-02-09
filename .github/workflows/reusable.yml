@@ -1,12 +1,26 @@
 name: reusable deploy
 
-on: workflow_call
+on: 
+  workflow_call:
+    inputs:
+      artifact-name:
+        description: 'The name of the artifact to download'
+        required: true
+        type: string
+        default: my-artifact
+
 
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Get Code
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ inputs.artifact-name }}
+      - name: list files
+        run: ls -la
       - name: output
         run: | 
           echo "Hello, world!"

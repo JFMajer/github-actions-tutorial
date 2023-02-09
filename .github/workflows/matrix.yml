@@ -25,6 +25,15 @@ jobs:
         run: npm ci
       - name: build project
         run: npm run build
+      - name: tar build directory
+        run: tar -czvf dist.tar.gz dist
+      - name: upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-${{ matrix.node-version }}-${{ matrix.os }}
+          path: dist.tar.gz
   deploy:
     needs: build
     uses: ./.github/workflows/reusable.yml
+    with:
+      artifact-name: dist-18-ubuntu-latest
