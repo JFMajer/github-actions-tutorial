@@ -8,6 +8,8 @@ jobs:
   dev:
     environment: dev
     runs-on: ubuntu-latest
+    container:
+      image: node:16
     env:
       PASS: ${{ secrets.USER_PASSWORD }}
     steps:
